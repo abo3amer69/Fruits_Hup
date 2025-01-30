@@ -1,11 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruits_hup/core/utils/app_images.dart';
+import 'package:fruits_hup/features/on_boarding/presentation/views/on_boarding_view.dart';
 
-class SplashViewBody extends StatelessWidget {
+class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
 
   @override
+  State<SplashViewBody> createState() => _SplashViewBodyState();
+}
+
+class _SplashViewBodyState extends State<SplashViewBody> {
+  @override
+  @override
+  void initState() {
+    excuteNavigation();
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -26,5 +38,14 @@ class SplashViewBody extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  void excuteNavigation() {
+    Future.delayed(const Duration(seconds: 3), () {
+      Navigator.pushReplacementNamed(
+        context,
+        OnBoardingView.routeName,
+      );
+    });
   }
 }
