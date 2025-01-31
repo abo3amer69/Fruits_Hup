@@ -5,33 +5,64 @@ import 'package:fruits_hup/core/utils/app_colors.dart';
 import 'package:fruits_hup/core/widget/custom_button.dart';
 import 'package:fruits_hup/features/on_boarding/presentation/views/widgets/on_boarding_page_view.dart';
 
-class OnBoardingViewBody extends StatelessWidget {
+class OnBoardingViewBody extends StatefulWidget {
   const OnBoardingViewBody({super.key});
 
   @override
+  State<OnBoardingViewBody> createState() => _OnBoardingViewBodyState();
+}
+
+class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
+  late PageController pageController;
+  var currentPage = 0;
+  @override
+  void initState() {
+    pageController = PageController();
+    pageController.addListener(() {
+      currentPage = pageController.page!.round();
+      setState(() {});
+    });
+    super.initState();
+  }
+
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
     return Column(
       children: [
         Expanded(
-          child: OnBoardingPageView(),
+          child: OnBoardingPageView(
+            pageController: pageController,
+          ),
         ),
         DotsIndicator(
           dotsCount: 2,
           decorator: DotsDecorator(
             activeColor: AppColors.primaryColor,
-            color: AppColors.primaryColor.withOpacity(.5),
+            color: currentPage == 1
+                ? AppColors.primaryColor
+                : AppColors.primaryColor.withOpacity(.5),
           ),
         ),
         SizedBox(
           height: 29,
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: KHorizentalPadding,
-          ),
-          child: CustomButton(
-            onPressed: () {},
-            text: 'ابدأ الان',
+        Visibility(
+          visible: currentPage == 1 ? true : false,
+          maintainAnimation: true,
+          maintainSize: true,
+          maintainState: true,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: KHorizentalPadding,
+            ),
+            child: CustomButton(
+              onPressed: () {},
+              text: 'ابدأ الان',
+            ),
           ),
         ),
         SizedBox(
