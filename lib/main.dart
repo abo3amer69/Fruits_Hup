@@ -8,7 +8,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'generated/l10n.dart';
 
 void main() async {
-  await SharedPreferencesSingleton.init();
+  WidgetsFlutterBinding.ensureInitialized();
+  await prefs.init();
   runApp(const FruitHup());
 }
 
