@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hup/constants.dart';
 import 'package:fruits_hup/core/widget/custom_text_form_field.dart';
+import 'package:fruits_hup/features/auth/presentation/views/widget/terms_and_condition.dart';
 
 class SignupViewBody extends StatelessWidget {
   const SignupViewBody({super.key});
@@ -37,6 +38,10 @@ class SignupViewBody extends StatelessWidget {
               hintText: ' كلمة المرور',
               textInputType: TextInputType.visiblePassword,
             ),
+            SizedBox(
+              height: 16,
+            ),
+            TermsAndConditionWidget(),
           ],
         ),
       ),
