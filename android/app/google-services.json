@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "998653245790",
+    "project_id": "fruit-hup-98bb8",
+    "storage_bucket": "fruit-hup-98bb8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:998653245790:android:d94569a602094424e2b7cf",
+        "android_client_info": {
+          "package_name": "com.example.fruits_hup"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2DItwVs9NJ43Ie79QB67sUmAlo2zXNDk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
