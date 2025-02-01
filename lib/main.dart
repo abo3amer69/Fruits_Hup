@@ -34,7 +34,6 @@ class FruitHup extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
-      locale: const Locale('ar'),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: onGenerateRoute,
       initialRoute: SplashView.routeName,

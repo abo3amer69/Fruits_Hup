@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hup/constants.dart';
+import 'package:fruits_hup/core/utils/app_colors.dart';
+import 'package:fruits_hup/core/utils/app_text_styles.dart';
+import 'package:fruits_hup/core/widget/custom_button.dart';
 import 'package:fruits_hup/core/widget/custom_text_form_field.dart';
+import 'package:fruits_hup/features/auth/presentation/views/widget/dont_have_an_account_widget.dart';
+import 'package:fruits_hup/features/auth/presentation/views/widget/or_divider.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
@@ -9,7 +14,7 @@ class LoginViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: KHorizentalPadding),
-      child: const SingleChildScrollView(
+      child: SingleChildScrollView(
         child: Column(
           children: [
             SizedBox(
@@ -27,6 +32,35 @@ class LoginViewBody extends StatelessWidget {
               textInputType: TextInputType.visiblePassword,
               suffixicon: Icon(Icons.remove_red_eye),
             ),
+            SizedBox(
+              height: 16,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  'نسيت كلمة المرور؟',
+                  style: TextStyles.semiBold13.copyWith(
+                    color: AppColors.primaryColor,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 33,
+            ),
+            CustomButton(
+              onPressed: () {},
+              text: 'تسجيل الدخول',
+            ),
+            const SizedBox(
+              height: 33,
+            ),
+            const DontHaveAnAccountWidget(),
+            SizedBox(
+              height: 33,
+            ),
+            const OrDivider(),
           ],
         ),
       ),
