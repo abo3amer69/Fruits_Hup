@@ -22,19 +22,22 @@ class _passwordfieldState extends State<passwordfield> {
   Widget build(BuildContext context) {
     return CustomTextFormField(
       obscureText: obscureText,
-      onSaved: (value) {},
+      onSaved: (value) {
+        widget.onSaved!(value);
+      },
       suffixicon: GestureDetector(
         onTap: () {
           obscureText = !obscureText;
           setState(() {});
         },
         child: obscureText
-            ? Icon(
+            ? const Icon(
                 Icons.remove_red_eye,
                 color: Color(0xffC9CECF),
               )
             : Icon(
                 Icons.visibility_off,
+                color: Color(0xffC9CECF),
               ),
       ),
       hintText: ' كلمة المرور',

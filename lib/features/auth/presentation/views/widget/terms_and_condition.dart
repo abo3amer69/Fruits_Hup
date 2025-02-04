@@ -6,7 +6,9 @@ import 'package:fruits_hup/features/auth/presentation/views/widget/custom_check_
 import '../../../../../core/utils/app_colors.dart';
 
 class TermsAndConditionWidget extends StatefulWidget {
-  const TermsAndConditionWidget({super.key});
+  const TermsAndConditionWidget({super.key, required this.onChanged});
+
+  final ValueChanged<bool> onChanged;
 
   @override
   State<TermsAndConditionWidget> createState() =>
@@ -20,11 +22,12 @@ class _TermsAndConditionWidgetState extends State<TermsAndConditionWidget> {
     return Row(
       children: [
         CustomCheckBox(
-          isChecked: isTermesAccepted,
           onChecked: (value) {
             isTermesAccepted = value;
+            widget.onChanged(value);
             setState(() {});
           },
+          isChecked: isTermesAccepted,
         ),
         const SizedBox(
           width: 16,
