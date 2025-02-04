@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fruits_hup/core/errors/exception.dart';
 import 'package:fruits_hup/core/errors/failure.dart';
 import 'package:fruits_hup/core/services/firebase_auth_services.dart';
@@ -17,6 +18,31 @@ class AuthRepoImpl extends AuthRepo {
       String email, String password, String name) async {
     try {
       var user = await firebaseAuthServices.createUserWithEmailAndPassword(
+          email: email, password: password);
+      return right(
+        UserModel.fromFirebaseUser(user),
+      );
+    } on CustomException catch (e) {
+      return left(
+        ServerFailure(e.message),
+      );
+    } catch (e) {
+      log(
+        'Exception in authrepoimpl.createuserwithemailandpassword: ${e.toString()}',
+      );
+      return left(
+        ServerFailure(
+          'لقد حدث خطا مازالرجاء المحاوله مره اخرى.',
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserEntity>> signInWithEmailAndPassword(
+      String email, String password, String name) async {
+    try {
+      var user = await firebaseAuthServices.signInWithEmailAndPassword(
           email: email, password: password);
       return right(
         UserModel.fromFirebaseUser(user),
