@@ -30,4 +30,15 @@ class SigninCubit extends Cubit<SigninState> {
       (userEntity) => emit(SigninSuccess(userEntity: userEntity)),
     );
   }
+
+  Future<void> siginWithFacebook() async {
+    emit(SigninLoading());
+
+    var result = await authrepo.siginWithFacebook();
+
+    result.fold(
+      (failure) => emit(SigninFailure(message: failure.message)),
+      (userEntity) => emit(SigninSuccess(userEntity: userEntity)),
+    );
+  }
 }
