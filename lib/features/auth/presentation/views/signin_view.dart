@@ -6,6 +6,7 @@ import 'package:fruits_hup/core/widget/custom_app_bar.dart';
 import 'package:fruits_hup/features/auth/domain/repos/auth_repo.dart';
 import 'package:fruits_hup/features/auth/presentation/cubit/signin_cubits/signin_cubit.dart';
 import 'package:fruits_hup/features/auth/presentation/views/widget/signin_view_body.dart';
+import 'package:fruits_hup/features/auth/presentation/views/widget/signin_view_body_bloc_consumer.dart';
 
 class SigninView extends StatelessWidget {
   const SigninView({super.key});
@@ -20,7 +21,7 @@ class SigninView extends StatelessWidget {
       ),
       child: Scaffold(
         appBar: BuildAppBar(context, title: 'تسجيل الدخول'),
-        body: SigninViewBody(),
+        body: signinViewBodyBlocConsumer(),
       ),
     );
   }
