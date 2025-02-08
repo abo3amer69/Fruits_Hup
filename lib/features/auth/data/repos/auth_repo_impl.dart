@@ -53,7 +53,7 @@ class AuthRepoImpl extends AuthRepo {
       );
     } catch (e) {
       log(
-        'Exception in authrepoimpl.createuserwithemailandpassword: ${e.toString()}',
+        'Exception in authrepoimpl.createuserwithemailandpasswordwithemail: ${e.toString()}',
       );
       return left(
         ServerFailure(
@@ -72,7 +72,7 @@ class AuthRepoImpl extends AuthRepo {
       );
     } catch (e) {
       log(
-        'Exception in authrepoimpl.createuserwithemailandpassword: ${e.toString()}',
+        'Exception in authrepoimpl.createuserwithemailandpasswordwithgoogle: ${e.toString()}',
       );
       return left(
         ServerFailure(
@@ -91,7 +91,7 @@ class AuthRepoImpl extends AuthRepo {
       );
     } catch (e) {
       log(
-        'Exception in authrepoimpl.createuserwithemailandpassword: ${e.toString()}',
+        'Exception in authrepoimpl.createuserwithemailandpasswordwithfacebook: ${e.toString()}',
       );
       return left(
         ServerFailure(
