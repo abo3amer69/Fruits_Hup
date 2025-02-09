@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fruits_hup/core/errors/exception.dart';
 import 'package:fruits_hup/core/errors/failure.dart';
-import 'package:fruits_hup/core/services/database_services.dart';
+import 'package:fruits_hup/core/services/data_services.dart';
 import 'package:fruits_hup/core/services/firebase_auth_services.dart';
 import 'package:fruits_hup/core/utils/backend_endpoint.dart';
 import 'package:fruits_hup/features/auth/data/models/user_model.dart';

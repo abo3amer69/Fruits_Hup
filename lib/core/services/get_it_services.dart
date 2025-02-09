@@ -1,4 +1,4 @@
-import 'package:fruits_hup/core/services/database_services.dart';
+import 'package:fruits_hup/core/services/data_services.dart';
 import 'package:fruits_hup/core/services/firebase_auth_services.dart';
 import 'package:fruits_hup/core/services/firestore_services.dart';
 import 'package:fruits_hup/features/auth/data/repos/auth_repo_impl.dart';
