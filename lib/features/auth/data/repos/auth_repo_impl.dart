@@ -20,20 +20,25 @@ class AuthRepoImpl extends AuthRepo {
   @override
   Future<Either<Failure, UserEntity>> creatUserWithEmailAndPassword(
       String email, String password, String name) async {
+    User? user;
     try {
-      var user = await firebaseAuthServices.createUserWithEmailAndPassword(
+      user = await firebaseAuthServices.createUserWithEmailAndPassword(
           email: email, password: password);
 
       var userEntity = UserModel.fromFirebaseUser(user);
-      addUserData(user: userEntity);
-      return right(
-        userEntity,
-      );
+      await addUserData(user: userEntity);
+      return right(userEntity);
     } on CustomException catch (e) {
+      if (user != null) {
+        await firebaseAuthServices.deleteUser();
+      }
       return left(
         ServerFailure(e.message),
       );
     } catch (e) {
+      if (user != null) {
+        await firebaseAuthServices.deleteUser();
+      }
       log(
         'Exception in authrepoimpl.createuserwithemailandpassword: ${e.toString()}',
       );
