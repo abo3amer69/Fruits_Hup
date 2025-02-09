@@ -13,5 +13,5 @@ abstract class AuthRepo {
 
   Future<Either<Failure, UserEntity>> siginWithFacebook();
 
-  Future addData({required UserEntity user});
+  Future addUserData({required UserEntity user});
 }
