@@ -33,16 +33,12 @@ class AuthRepoImpl extends AuthRepo {
       await addUserData(user: userEntity);
       return right(userEntity);
     } on CustomException catch (e) {
-      if (user != null) {
-        await firebaseAuthServices.deleteUser();
-      }
+      await deletUser(user);
       return left(
         ServerFailure(e.message),
       );
     } catch (e) {
-      if (user != null) {
-        await firebaseAuthServices.deleteUser();
-      }
+      await deletUser(user);
       log(
         'Exception in authrepoimpl.createuserwithemailandpassword: ${e.toString()}',
       );
@@ -51,6 +47,12 @@ class AuthRepoImpl extends AuthRepo {
           'لقد حدث خطا مازالرجاء المحاوله مره اخرى.',
         ),
       );
+    }
+  }
+
+  Future<void> deletUser(User? user) async {
+    if (user != null) {
+      await firebaseAuthServices.deleteUser();
     }
   }
 
@@ -81,12 +83,14 @@ class AuthRepoImpl extends AuthRepo {
 
   @override
   Future<Either<Failure, UserEntity>> siginWithGoogle() async {
+    User? user;
     try {
-      var user = await firebaseAuthServices.signInWithGoogle();
-      return right(
-        UserModel.fromFirebaseUser(user),
-      );
+      user = await firebaseAuthServices.signInWithGoogle();
+      var userEntity = UserModel.fromFirebaseUser(user);
+      await addUserData(user: userEntity);
+      return right(userEntity);
     } catch (e) {
+      await deletUser(user);
       log(
         'Exception in authrepoimpl.createuserwithemailandpasswordwithgoogle: ${e.toString()}',
       );
@@ -100,12 +104,14 @@ class AuthRepoImpl extends AuthRepo {
 
   @override
   Future<Either<Failure, UserEntity>> siginWithFacebook() async {
+    User? user;
     try {
-      var user = await firebaseAuthServices.signInWithFacebook();
-      return right(
-        UserModel.fromFirebaseUser(user),
-      );
+      user = await firebaseAuthServices.signInWithFacebook();
+      var userEntity = UserModel.fromFirebaseUser(user);
+      await addUserData(user: userEntity);
+      return right(userEntity);
     } catch (e) {
+      await deletUser(user);
       log(
         'Exception in authrepoimpl.createuserwithemailandpasswordwithfacebook: ${e.toString()}',
       );
