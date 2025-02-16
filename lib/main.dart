@@ -6,6 +6,7 @@ import 'core/helper_function/on_generate_route.dart';
 import 'generated/l10n.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Prefs.init();
   runApp(const FruitHup());
 }
